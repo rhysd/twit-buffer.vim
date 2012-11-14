@@ -30,6 +30,7 @@ function! s:update_status() "{{{
         text = lines.join("\n")
         # hooter = VIM::evaluate "exists('g:tweet_hooter') ? g:tweet_hooter : ''"
         # text += hooter unless hooter.empty?
+        File.open(File.expand_path('~/.twitbuffer'), 'a'){|f| f.puts text }
 
         begin
             yaml = YAML.load(File.open(File.expand_path('~/.credential.yml')).read)
